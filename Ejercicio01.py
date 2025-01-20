@@ -6,23 +6,30 @@ Con ambas funciones, calcular y comparar el tiempo de ejecución para
 n = (1, 10, 20, 30 y 40) por fuerza bruta.
 '''
 import datetime
-def fibonacci_recursivo(n):
-    if n == 1 or n == 2:
-        return 1
-    else:
-        return fibonacci_recursivo(n-1) + fibonacci_recursivo(n - 2)
-    
 
-a, b = 0, 1
+def fibonacci_recur(n):
+    if n <= 1:
+        return n
+    return fibonacci_recur(n - 1) + fibonacci_recur(n - 2)
+
 def fibonacci_bucle(n):
-    if n <= 0:
-        return 0
-    elif n == 1 or n == 2:
-        return 1
-    for i in range(2, n):
+    a, b = 0, 1
+    for _ in range( n + 1):
         a, b = b, a + b
-        return b
+    return b
 
-n = [1, 10, 20, 30, 40]
-print(fibonacci_recursivo(n))
-print(fibonacci_bucle(n))
+numeros = [1, 10, 20, 30, 40]
+
+for n in numeros:
+    inicio_r = datetime.datetime.now()
+    numero_r = fibonacci_recur(n)
+    fin_r = datetime.datetime.now()
+    tiempo_r = (fin_r - inicio_r)
+
+    inicio_b = datetime.datetime.now()
+    numero_b = fibonacci_recur(n)
+    fin_b = datetime.datetime.now()
+    tiempo_b = (fin_b - inicio_b)
+    print('n =', n)
+    print('Recursivo:\nResultado =', tiempo_r)
+    print('Bucle:\nResultado =', tiempo_b)
